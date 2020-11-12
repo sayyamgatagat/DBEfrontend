@@ -30,7 +30,7 @@ var con = mysql.createConnection({
   
 
   app.listen(port, () => {
-      console.log(`Example app listening at http://localhost:${port}`)
+      console.log(`App started at http://localhost:${port}`)
   })
   
   con.end();

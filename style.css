@@ -1,9 +1,18 @@
 .part1{
+    /* background-image :url(/src/background.png); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     display: flex;
     align-items: center;
     flex-flow: column;
     justify-content: center;
     padding: 10%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: larger;
+    background-image: linear-gradient(rgb(125, 125, 238), rgb(138, 224, 253),rgb(210, 234, 241),white);
+    
 }
 .services{
     display: flex;
@@ -19,7 +28,39 @@
     background-color: rgb(32, 99, 167);
     position: fixed;
     width: 100%;
+    z-index: 999;
 }
 .navbar-nav{
     margin-left: auto;
+}
+.nav-link{
+    color: white;
+    
+}
+.image {
+    width: 25px;
+    height: 25px;
+}
+.imagebig {
+    width: 35px;
+    height: 35px;
+}
+
+.navbar-nav li a{
+    padding: 3px 0;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-rendering: auto;
+    font-size: 100%;
+    font-weight: 100%;
+    
+}
+
+.navbar-nav li a:hover{
+    border-bottom: 1px solid white;
+}
+.logo{
+    width:30px;
+    height:30px;
 }
