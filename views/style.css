@@ -64,3 +64,12 @@
     width:30px;
     height:30px;
 }
+.contact{
+    padding-left: 25%;
+    padding-right: 25%;
+    background-image: linear-gradient( rgb(138, 224, 253), rgb(138, 224, 253),rgb(210, 234, 241),white);
+}
+footer{
+    background-color: rgb(32, 99, 167);
+    color: white;
+}
