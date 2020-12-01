@@ -6,7 +6,10 @@ const app = express()
 const port = 3000
 
 app.set('view engine', 'ejs');
-app.engine('.html', require('ejs').renderFile); // register .html as an engine in express view system
+
+/* middleware */
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 /* defining database */
 var con = mysql.createConnection({
     host: "localhost",
@@ -20,31 +23,41 @@ var con = mysql.createConnection({
   app.use(express.static('views'));
   
   /* Starting database connection */
-  con.connect();
+  con.connect(function (error) {
+    if (error) {
+        console.log("Error in Connecting Database");
+        throw error;
+    }
+    else {
+        console.log("Connected to Database");
+    }
+});
 
-  app.get('/', (req, res) => {
-    res.send('Hello World!')
-  })
+
+
   /* call login */
   app.get('/login',(req,res)=>{
     res.render(__dirname + '/views/login.ejs')
   })
 
   /*login validation*/
-
-  app.post('/loguser',(req,res)=>{
+  app.post('/loguser',urlencodedParser,function(req,res){
     var userid = req.body.userid;
-  
-    var quer = 'select * from cred where username =' + userid;
-    console.log(userid);
+    var pass = md5(req.body.password);
+    var quer = "select * from cred where username = " + userid;
+    console.log(userid+" "+pass + " "+quer);
+    con.query(quer,function(err,results,fields){
+      if(pass == results[0].password){
+        console.log("Success!");
+        res.render(__dirname + '/views/customer.ejs',{data : userid})
+      }
+      else{
+        console.log("try again!!");
+      }
+    });
 
-  })
+  });
 
   app.listen(port, () => {
       console.log(`App started at http://localhost:${port}`)
   })
-  
-
-
-  /* ending database connection */
-  con.end();
