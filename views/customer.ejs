@@ -3,11 +3,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
 </head>
+<%- include('header') -%>
 <body>
-    <h1>LOGIN SUCCESSFUL</h1>
-    <p>Welcome </p> 
+    <h1>LOGIN SUCCESSFUL</h1> 
     <%if(uid !== undefined){%>
-        <h1><%=uid%></h1>
+        <h1>Welcome <%=uid%></h1>
     <%}%>
     <%if(name !== undefined){%>
         <h1><%=name%></h1>

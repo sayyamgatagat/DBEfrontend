@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const md5 = require('md5')
 const app = express()
 const port = 3000
+const loggedin = false;
 
 app.set('view engine', 'ejs');
 
@@ -38,8 +39,7 @@ var con = mysql.createConnection({
   /* call login */
   app.get('/login',(req,res)=>{
     res.render("login")
-  })
-
+  });
   /*login validation*/
   app.post('/loguser',urlencodedParser,function(req,res){
     var userid = req.body.userid;
@@ -48,19 +48,28 @@ var con = mysql.createConnection({
     
     console.log(userid + "is trying to log in");
     con.query(quer,function(err,results,fields){
-      if(pass == results[0].password){
+      if(results.length == 0){
+        res.render("login",{unf: "User not found! Try creating a new Account!!"});
+        console.log("incorrect username!!");
+      }
+      else if(pass == results[0].password){
         console.log("Success!");
         con.query("select name from customer where customer_id="+userid,function(err,results,fields){
-          res.render('customer',{uid : userid, name: results[0].name }); // renders username and password 
-        })
+          res.render('customer',{uid : userid, name: results[0].name }); // renders username and password and calls customer dashboard
+        });
       }
       else{
-        console.log("unsuccessful!!");
+        console.log("Incorrect password");
       }
     });
-    
-
   });
+
+  /* Signup call*/
+  app.get("/signup",(req,res)=>{
+    res.render("signup");
+  });
+
+
 
   app.listen(port, () => {
       console.log(`App started at http://localhost:${port}`)
