@@ -5,6 +5,11 @@ const md5 = require('md5')
 const app = express()
 const port = 3000
 const loggedin = false;
+let userid;
+let details;
+let policyid;
+let policytype;
+let pdetails;
 
 app.set('view engine', 'ejs');
 
@@ -42,7 +47,7 @@ var con = mysql.createConnection({
   });
   /*login validation*/
   app.post('/loguser',urlencodedParser,function(req,res){
-    var userid = req.body.userid;
+    userid = req.body.userid;
     var pass = md5(req.body.password);
     var quer = "select * from cred where username = " + userid;
     
@@ -55,7 +60,7 @@ var con = mysql.createConnection({
       else if(pass == results[0].password){
         console.log("Success!");
         con.query("select name from customer where customer_id="+userid,function(err,results,fields){
-          res.render('customer',{uid : userid, name: results[0].name }); // renders username and password and calls customer dashboard
+          res.render('customer',{uid : userid, details: results[0] }); // renders username and password and calls customer dashboard
         });
       }
       else{
@@ -70,7 +75,24 @@ var con = mysql.createConnection({
   });
 
 
+  /*profile*/
+  app.get('/profile',(req,res)=>{
+    con.query("select * from customer where customer_id="+userid,function(err,results,fields){
+      res.render('profile',{uid : userid, details: results[0] });
+    });
+  });
 
+  /*admin call*/
+  app.get('/admin',(req,res)=>{
+    res.render("admin")
+  });
+
+  /*admin call*/
+  app.get('/agent',(req,res)=>{
+    res.render("agent")
+  });
+
+  /*app listen*/
   app.listen(port, () => {
       console.log(`App started at http://localhost:${port}`)
   })

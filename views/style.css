@@ -27,6 +27,7 @@
 .navbar{
     background-color: rgb(32, 99, 167);
     position: fixed;
+    top: 0 !important;
     width: 100%;
     z-index: 999;
 }
@@ -73,3 +74,4 @@ footer{
     background-color: rgb(32, 99, 167);
     color: white;
 }
+
