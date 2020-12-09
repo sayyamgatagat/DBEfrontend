@@ -39,7 +39,10 @@ var con = mysql.createConnection({
     }
 });
 
-
+  /*Home page call*/
+  app.get('/',(req,res)=>{
+    res.render('index');
+  });
 
   /* call login */
   app.get('/login',(req,res)=>{
@@ -101,7 +104,11 @@ var con = mysql.createConnection({
   /*store contact form details */
   app.post("/schedulecall",urlencodedParser,(req,res)=>{
     name = req.body.fname + ' ' + req.body.lname;
-    con.query("insert into contat values(?,?,date(?),?,?)",[name,req.body.email,req.body.phone,req.body.date,req.body.msg],function(err,results,fields){
+    con.query("insert into contact values(?,?,?,?,?)",[name,req.body.email,req.body.phone,req.body.date,req.body.msg],function(err,results,fields){
+      if(err){
+        throw err;
+      }
+      else
       console.log(results);
     })
     console.log(name,req.body.email,req.body.phone,req.body.date,req.body.msg);
