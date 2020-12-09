@@ -13,15 +13,12 @@
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
-                                <h5>
+                                <h5>Welcome</h5>
+                                <h6>
                                     <%if(details != undefined){%>
                                         <%=details.name%>
                                     <%}%>
-                                </h5>
-                                <h6>
-                                    Web Developer and Designer
                                 </h6>
-                                <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -40,7 +37,9 @@
                 <div class="col-md-4">
                     <div class="profile-work">
                         <p>Policy details</p>
-                        <a href="">Website Link</a><br/>
+                        <p><%if(details != undefined){%>
+                            <%=details.policy_no%>
+                        <%}%></p><br/>
                         <a href="">Bootsnipp Profile</a><br/>
                         <a href="">Bootply Profile</a>
                         <p>SKILLS</p>

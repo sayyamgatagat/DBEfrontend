@@ -59,7 +59,7 @@ var con = mysql.createConnection({
       }
       else if(pass == results[0].password){
         console.log("Success!");
-        con.query("select name from customer where customer_id="+userid,function(err,results,fields){
+        con.query("select * from customer where customer_id="+userid,function(err,results,fields){
           res.render('customer',{uid : userid, details: results[0] }); // renders username and password and calls customer dashboard
         });
       }
@@ -67,6 +67,7 @@ var con = mysql.createConnection({
         console.log("Incorrect password");
       }
     });
+    
   });
 
   /* Signup call*/
@@ -78,19 +79,34 @@ var con = mysql.createConnection({
   /*profile*/
   app.get('/profile',(req,res)=>{
     con.query("select * from customer where customer_id="+userid,function(err,results,fields){
-      res.render('profile',{uid : userid, details: results[0] });
+      res.render('profile',{uid : userid, details: results[0], pdet : pdetails });
     });
   });
 
   /*admin call*/
   app.get('/admin',(req,res)=>{
-    res.render("admin")
+    res.render("admin");
   });
 
   /*admin call*/
   app.get('/agent',(req,res)=>{
-    res.render("agent")
+    res.render("agent");
   });
+
+  /*Schedule call  */
+  app.get('/schedulecall',(req,res)=>{
+    res.render("schedulecall");
+  });
+
+  /*store contact form details */
+  app.post("/schedulecall",urlencodedParser,(req,res)=>{
+    name = req.body.fname + ' ' + req.body.lname;
+    con.query("insert into contat values(?,?,date(?),?,?)",[name,req.body.email,req.body.phone,req.body.date,req.body.msg],function(err,results,fields){
+      console.log(results);
+    })
+    console.log(name,req.body.email,req.body.phone,req.body.date,req.body.msg);
+  });
+
 
   /*app listen*/
   app.listen(port, () => {

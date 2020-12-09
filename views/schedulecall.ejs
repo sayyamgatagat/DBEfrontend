@@ -1,0 +1,52 @@
+<%- include('header') -%>
+
+<div class="banner3">
+    <div class="py-5 banner" style="background-image:url(src/schedulecallbg.png);">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 col-lg-5">
+             <form action="schedulecall" method="POST"> 
+            <h3 class="my-3 text-white font-weight-medium text-uppercase">Schedule a Call!</h3>
+            <div class="bg-white">
+              <div class="form-row border-bottom">
+                <div class="p-4 left border-right w-50">
+                  <label class="text-inverse font-12 text-uppercase">First Name</label>
+                  <input required type="text" class="border-0 p-0 font-14 form-control" placeholder="Your First Name" name="fname" id="fname" />
+                </div>
+                <div class="p-4 right w-50">
+                  <label class="text-inverse font-12 text-uppercase">Last Name</label>
+                  <input type="text" required class="border-0 p-0 font-14 form-control" placeholder="Your Last Name" name="lname" id="lname"/>
+                </div>
+              </div>
+              <div class="form-row border-bottom p-4">
+                <label class="text-inverse font-12 text-uppercase">Email Address</label>
+                <input type="email" name="email" required id="email" class="border-0 p-0 font-14 form-control" placeholder="Enter your Email Address" />
+              </div>
+              <div class="form-row border-bottom p-4">
+                <label class="text-inverse font-12 text-uppercase">Phone Number</label>
+                <input type="text" required class="border-0 p-0 font-14 form-control" placeholder="Enter your Phone Number" name="phone" id="phone"/>
+              </div>
+              <div class="form-row border-bottom p-4 position-relative">
+                <label class="text-inverse font-12 text-uppercase">Select the Appointment Date</label>
+                <div class="input-group date">
+                  <input type="date" class="border-0 p-0 font-14 form-control" id="dp" placeholder="Select the Appointment Date" name="date" id="date" />
+                  <label class="mt-2" for="dp"><i class="icon-calendar mt-1"></i></label>
+                </div>
+              </div>
+              <div class="form-row border-bottom p-4">
+                <label class="text-inverse font-12 text-uppercase">Message</label>
+                <textarea col="1" row="1" name="msg" id="msg" class="border-0 p-0 font-weight-light font-14 form-control" placeholder="Write Down the Message"></textarea>
+              </div>
+              <div>
+                <button type="submit"  class="m-0 border-0 py-4 font-14 font-weight-medium btn btn-danger-gradiant btn-block position-relative rounded-0 text-center text-white text-uppercase">
+                                      <span>Submit</span>
+                              </button>
+                            </form>
+                        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
