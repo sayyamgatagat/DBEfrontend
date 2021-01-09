@@ -186,3 +186,7 @@ footer{
 .banner3 .text-inverse {
   color: #3e4555 !important;
 }
+
+.schedulebtn{
+  background-image: linear-gradient( rgb(138, 224, 253), rgb(138, 224, 253),rgb(210, 234, 241),white);
+}

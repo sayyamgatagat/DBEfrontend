@@ -18,7 +18,7 @@
                 <span class="login100-form-title">
                     Member Login
                 </span>
-
+                
                 <div class="wrap-input100 validate-input" data-validate = "username is required">
                     <input class="input100" type="text" name="userid" id="userid" placeholder="Userid">
                     <span class="focus-input100"></span>
@@ -34,6 +34,11 @@
                         <i class="fa fa-lock" aria-hidden="true"></i>
                     </span>
                 </div>
+                <%if(error !== undefined){%>
+                    <div class="alert alert-danger <%=error[0]%>" role="alert">
+                      <%=error%>
+                    </div>
+                <%}%>
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn" type="submit">
                         Login

@@ -46,7 +46,7 @@ var con = mysql.createConnection({
 
   /* call login */
   app.get('/login',(req,res)=>{
-    res.render("login")
+    res.render("login",{error : undefined})
   });
   /*login validation*/
   app.post('/loguser',urlencodedParser,function(req,res){
@@ -56,8 +56,8 @@ var con = mysql.createConnection({
     
     console.log(userid + "is trying to log in");
     con.query(quer,function(err,results,fields){
-      if(results.length == 0){
-        res.render("login",{unf: "User not found! Try creating a new Account!!"});
+      if(results == undefined){
+        res.render("login",{unf: "User not found! Try creating a new Account!!", error : "Incorrect Username"});
         console.log("incorrect username!!");
       }
       else if(pass == results[0].password){
@@ -67,6 +67,7 @@ var con = mysql.createConnection({
         });
       }
       else{
+        res.render("login",{unf: "User not found! Try creating a new Account!!", error : "Incorrect Password"});
         console.log("Incorrect password");
       }
     });
