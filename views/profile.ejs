@@ -35,19 +35,14 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="profile-work">
-                        <p>Policy details</p>
-                        <p><%if(details != undefined){%>
-                            <%=details.policy_no%>
-                        <%}%></p><br/>
-                        <a href="">Bootsnipp Profile</a><br/>
-                        <a href="">Bootply Profile</a>
-                        <p>SKILLS</p>
-                        <a href="">Web Designer</a><br/>
-                        <a href="">Web Developer</a><br/>
-                        <a href="">WordPress</a><br/>
-                        <a href="">WooCommerce</a><br/>
-                        <a href="">PHP, .Net</a><br/>
+                    <div class="profile-work" style="">
+                        <h3 style="text-decoration: underline; text-align: center;">Policy details</h3>
+                        <%if(details != undefined && pdet!=undefined){%>
+                            <p>Policy No. : <%=details.policy_no%></p>
+                            <p>Maturity Date : <%=pdet.maturity_date.toString().slice(4,15)%></p>
+                            <p>Cover Amount : <%=pdet.cover_amt%> </p>
+                        <%}%>
+                        
                     </div>
                 </div>
                 <div class="col-md-8">

@@ -190,3 +190,22 @@ footer{
 .schedulebtn{
   background-image: linear-gradient( rgb(138, 224, 253), rgb(138, 224, 253),rgb(210, 234, 241),white);
 }
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(92, 92, 92); 
+}
