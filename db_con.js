@@ -4,12 +4,10 @@ const bodyParser = require('body-parser')
 const md5 = require('md5')
 const app = express()
 const port = 3000
-const loggedin = false;
-let userid;
-let details;
-let policyid;
-let policytype;
-let pdetails;
+var userid;
+var details;
+var pdetails;
+const agent = []
 
 let policyTypes = [
   {
@@ -132,7 +130,7 @@ var con = mysql.createConnection({
     con.query("select * from customer where customer_id="+userid,function(err,results,fields){
       con.query("select * from policy where policy_no = "+results[0].policy_no,function(error,result,field){
         pdetails = result[0];
-        console.log(typeof(pdetails.maturity_date));
+        console.log(pdetails);
         res.render('profile',{uid : userid, details: results[0], pdet : pdetails });
       })
     });
@@ -148,10 +146,53 @@ var con = mysql.createConnection({
     res.render("admin");
   });
 
-  /*admin call*/
-  app.get('/agent',(req,res)=>{
-    res.render("agent");
+  /*agent call*/
+  app.get('/agentlogin',(req,res)=>{
+    res.render("agentlogin",{error :undefined});
   });
+
+  /*Agent login */
+  app.post('/logagent',urlencodedParser,function(req,res){
+    agentid = req.body.agentid;
+    var pass = req.body.password;
+    var quer = "select * from agent where agent_id = " + agentid;
+    console.log(agentid + " (agent)is trying to log in");
+    con.query(quer,function(err,results,fields){
+      agent.push(results);
+      console.log(results[0].agent_id + '@' + results[0].registration_no)
+      if(results == undefined){
+        res.render("agentlogin",{unf: "User not found! Try creating a new Account!!", error : "Incorrect Username"});
+        console.log("incorrect username!!");
+      }
+      else if(pass == results[0].agent_id + '@' + results[0].registration_no){
+        console.log("Success!");
+        con.query("select * from customer where agent_id="+agentid,function(err,results,fields){
+          res.render('agent',{agentid,cusresults : results,callresults : undefined}); // renders username and password and calls customer dashboard
+          console.log(results);
+        });
+      }
+      else{
+        res.render("agentlogin",{unf: "User not found! Try creating a new Account!!", error : "Incorrect Password"});
+        console.log("Incorrect password");
+      }
+    });
+    
+  });
+  console.log(agent);
+  app.get("/agentprof",function(req,res){
+    console.log(agent);
+    agentdetails = agent[agent.length-1];
+    con.query("select * from customer where agent_id="+agentdetails[0].agent_id,function(err,results,fields){
+      res.render('agent',{agentid: agentdetails[0].agent_id, cusresults : results, callresults : undefined}); 
+      console.log(agentdetails.agent_id,results);
+    });
+  });
+  app.get("/agentcall",function(req,res){
+    con.query("select * from contact",function(err,results,fields){
+      res.render("agent",{agentid,cusresults : undefined,callresults : results});
+    })
+  });
+
 
   /*Schedule call  */
   app.get('/schedulecall',(req,res)=>{
@@ -173,10 +214,13 @@ var con = mysql.createConnection({
 
   /*Agent call */
   app.get('/schedulecall',(req,res)=>{
-
-
     res.render("schedulecall");
   });
+
+  app.get("/claim",function(req,res){
+    res.render("claim");
+  });
+
 
 
   /*app listen*/

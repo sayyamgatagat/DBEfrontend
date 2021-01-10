@@ -1,0 +1,70 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The insurance company</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="icon" href="src/healthcare.svg" type="image/gif" sizes="16x16">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" href="#"><img src="/src/healthcare.png" alt="logo" class="logo"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" style='color: rgb(32, 99, 167)' href="/">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style='color: rgb(19, 19, 51) ; background-color: rgb(146, 188, 207); ' href="/claim">Raise Claim</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style='color: rgb(32, 99, 167)' href="/#contact">Contact</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<body>
+    <div class="container register" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                <h3>Super Fast Claims</h3>
+                <p>Get Your Claim Settled in just 4 days</p>
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Fill in your details</h3>
+                        <div class="row register-form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Name *" value=""  name="name"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Email *" value="" name="email" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Phone Number *" value="" name="phone" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control"  placeholder="Reason *" value="" name="reason"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Amount *" value="" name="amount"/>
+                                </div>
+                                    <input type="submit" class="btnRegister"  value="Submit"/>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
